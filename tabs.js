@@ -27,7 +27,7 @@ if (navigator.userAgent.includes('Chrome')) {
  */
 function listTabs() {
   getCurrentWindowTabs().then((tabs) => {
-    console.log(tabs);
+    // console.log(tabs);
     let tabsList = document.getElementById('tabs-list');
     let currentTabs = document.createDocumentFragment();
     let counter = 0;

@@ -1,5 +1,33 @@
+// polyfill Chrome API
+var browserTabs;
+console.log('background');
+if (navigator.userAgent.includes('Chrome')) {
+  browserTabs = {
+    query: function (queryInfo) {
+      return new Promise(function (resolve, reject) {
+        chrome.tabs.query(queryInfo, resolve);
+      });
+    },
+    remove: function (tabId) {
+      return new Promise(function (resolve, reject) {
+        chrome.tabs.remove(tabId, resolve);
+      });
+    },
+    update: function (tabId, updateProperties) {
+      return new Promise(function (resolve, reject) {
+        chrome.tabs.update(tabId, updateProperties, resolve);
+      });
+    },
+    onRemoved: chrome.tabs.onRemoved,
+    onCreated: chrome.tabs.onCreated
+  };
+  browser = chrome;
+} else {
+  browserTabs = browser.tabs;
+}
+
 function updateCount(tabId, isOnRemoved) {
-  browser.tabs.query({})
+  browserTabs.query({})
   .then((tabs) => {
     let length = tabs.length;
 
@@ -15,10 +43,10 @@ function updateCount(tabId, isOnRemoved) {
 }
 
 
-browser.tabs.onRemoved.addListener(
+browserTabs.onRemoved.addListener(
   (tabId) => { updateCount(tabId, true);
 });
-browser.tabs.onCreated.addListener(
+browserTabs.onCreated.addListener(
   (tabId) => { updateCount(tabId, false);
 });
 updateCount();

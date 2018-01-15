@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  width: 60rem;
+  max-width: 60rem;
   overflow-x: hidden;
   overflow-y: scroll;
   /* overflow-y: overlay; */
@@ -150,7 +150,7 @@ svg path {
 .tabs-container a.switch-tabs {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1.5rem 0.5rem 0;
   width: calc(100% - 4.5rem);
   font-size: 1.2rem;
   overflow: hidden;
