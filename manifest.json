@@ -24,5 +24,12 @@
     "48": "icon/icon48.png",
     "96": "icon/icon96.png",
     "128": "icon/icon128.png"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "linux": "Ctrl+Shift+L"
+      }
+    }  
   }
 }
