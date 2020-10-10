@@ -43,6 +43,7 @@ function listTabs() {
       let tabLink = document.createElement('a');
       tabLink.textContent = tab.title || tab.id;
       tabLink.setAttribute('href', tab.id);
+      tabLink.setAttribute('data-url', tab.url);
       tabLink.setAttribute('tabindex', index + 2);
       tabLink.classList.add('switch-tabs');
       if (tab.active) {
@@ -80,7 +81,7 @@ function getCurrentWindowTabs() {
 function filterTabs(searchText) {
   searchText = searchText.toLowerCase();
   document.querySelectorAll('#tabs-list > li').forEach(node => {
-    if (node.firstChild.textContent.toLowerCase().includes(searchText)) {
+    if (node.firstChild.textContent.toLowerCase().includes(searchText) || node.firstChild.dataset.url.includes(searchText)) {
       node.classList.remove('hide');
     } else {
       node.classList.add('hide');
